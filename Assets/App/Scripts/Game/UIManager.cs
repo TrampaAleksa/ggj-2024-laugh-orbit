@@ -6,20 +6,27 @@ using UnityEngine.UI;
 public class UIManager : MonoBehaviour
 {
     public GameObject pauseScreen;
-    
-    public Button pauseExitButton;
     public Button pauseContinueButton;
+    public Button pauseExitButton;
 
     public GameObject gameOverScreen;
     public Button gameOverRestartButton;
     public Button gameOverExitButton;
+    
+    public GameObject gameWonScreen;
+    public Button gameWonRestartButton;
+    public Button gameWonExitButton;
 
     private void Awake()
     {
         pauseExitButton.onClick.AddListener(ExitGame);
         pauseContinueButton.onClick.AddListener(ContinueGame);
+        
         gameOverRestartButton.onClick.AddListener(RestartGame);
         gameOverExitButton.onClick.AddListener(ExitGame);
+        
+        gameWonRestartButton.onClick.AddListener(RestartGame);
+        gameWonExitButton.onClick.AddListener(ExitGame);
     }
 
     private void Update()
