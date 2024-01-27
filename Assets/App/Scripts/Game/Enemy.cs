@@ -14,6 +14,7 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         health = GetComponent<Health>();
+        health.OnZeroHealth.AddListener(Deactivate);
     }
 
     private void OnEnable()

@@ -12,5 +12,7 @@ public class PlayerCharacter : MonoBehaviour
     {
         health = GetComponent<Health>();
         playerMovement = GetComponent<PlayerMovement>();
+        
+        health.OnZeroHealth.AddListener(EventManager.Instance.GameOverEvent);
     }
 }

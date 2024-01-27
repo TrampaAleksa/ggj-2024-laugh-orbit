@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EventManager : MonoBehaviour
 {
@@ -22,12 +23,14 @@ public class EventManager : MonoBehaviour
     {
         // Do something when the enemy hits the player
         Debug.Log("Enemy: " + enemy.name + " hit the player: " + player.name);
+        player.health.RemoveHealth(1);
     }
     
     public void BulletHitEnemyEvent(Bullet bullet, Enemy enemy)
     {
         // Do something when the bullet hits the enemy
         Debug.Log("Bullet: " + bullet.name + " hit the enemy: " + enemy.name);
+        enemy.health.RemoveHealth(1);
     }
     
     public void PlayerHitPickup(PlayerCharacter player , JokePickup pickup)
@@ -46,5 +49,11 @@ public class EventManager : MonoBehaviour
         {
             enemy.StartDeathLaughing();
         }
+    }
+
+    public void GameOverEvent()
+    {
+        Debug.Log("Game Over");
+        SceneManager.LoadScene("Game");
     }
 }
