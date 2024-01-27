@@ -5,14 +5,18 @@ using UnityEngine;
 
 public class PlayerCharacter : MonoBehaviour
 {
+    [HideInInspector]
     public Health health;
+    [HideInInspector]
     public PlayerMovement playerMovement;
+    [HideInInspector]
+    public PlayerShooting playerShooting;
 
     private void Awake()
     {
         health = GetComponent<Health>();
         playerMovement = GetComponent<PlayerMovement>();
-        
+        playerShooting = GetComponent<PlayerShooting>();
     }
     private void Start()
     {

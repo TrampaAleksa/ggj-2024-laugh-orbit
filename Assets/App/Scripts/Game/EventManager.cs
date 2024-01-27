@@ -5,6 +5,7 @@ public class EventManager : MonoBehaviour
 {
     public static EventManager Instance;
     public UIManager uiManager;
+    public VictorySequenceManager victorySequence;
 
     private JokePickupCounter jokeCounter;
 
@@ -64,6 +65,6 @@ public class EventManager : MonoBehaviour
     public void WonGameEvent()
     {
         Debug.Log("Game Won");
-        uiManager.GameWon();
+        victorySequence.WinGame();
     }
 }

@@ -243,6 +243,53 @@ MonoBehaviour:
       m_Calls: []
   maxSpawnInterval: 0.7
   minSpawnInterval: 0.08
+--- !u!1 &865496920
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 865496922}
+  - component: {fileID: 865496921}
+  m_Layer: 0
+  m_Name: VictorySequence
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &865496921
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865496920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5036c75ae9874ef393fe517f5ba1b206, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemySpawner: {fileID: 627609838}
+  jokeSpawner: {fileID: 1442899100}
+  playerCharacter: {fileID: 1579576330}
+--- !u!4 &865496922
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 865496920}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 268.8219, y: 144.61037, z: -2.397394}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1158504352
 GameObject:
   m_ObjectHideFlags: 0
@@ -515,8 +562,8 @@ MonoBehaviour:
   onSpawnEvent:
     m_PersistentCalls:
       m_Calls: []
-  maxSpawnInterval: 4
-  minSpawnInterval: 7
+  maxSpawnInterval: 3
+  minSpawnInterval: 2
 --- !u!1 &1486583079
 GameObject:
   m_ObjectHideFlags: 0
@@ -711,6 +758,17 @@ MonoBehaviour:
   gameWonScreen: {fileID: 1754834656218486350}
   gameWonRestartButton: {fileID: 858243842343398251}
   gameWonExitButton: {fileID: 1814342508233406094}
+--- !u!114 &1579576330 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3604656923931429126, guid: 4290b0417e7b0354e9c2dc6da8afdae6, type: 3}
+  m_PrefabInstance: {fileID: 5771366946274756058}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fafaf729d5997143b206cc7d15cd398, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1813788077 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6503498316842926274, guid: 900808b9f9af8a64d917194208a36982, type: 3}
@@ -751,6 +809,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   uiManager: {fileID: 1577294845}
+  victorySequence: {fileID: 865496921}
 --- !u!4 &1850109519
 Transform:
   m_ObjectHideFlags: 0
@@ -1321,3 +1380,4 @@ SceneRoots:
   - {fileID: 1213254056}
   - {fileID: 1577294844}
   - {fileID: 1486583082}
+  - {fileID: 865496922}
