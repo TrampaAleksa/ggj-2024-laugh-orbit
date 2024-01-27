@@ -29,4 +29,10 @@ public class EventManager : MonoBehaviour
         // Do something when the bullet hits the enemy
         Debug.Log("Bullet: " + bullet.name + " hit the enemy: " + enemy.name);
     }
+    
+    public void PlayerHitPickup(PlayerCharacter player , JokePickup pickup)
+    {
+        // Do something when the player hits the pickup
+        Debug.Log("Player: " + player.name + " hit the pickup: " + pickup.name);
+    }
 }
