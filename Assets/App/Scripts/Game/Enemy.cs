@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour
     private void Deactivate()
     {
         EnemyPool.Instance.ReturnToPool(this);
+        GetComponent<ColorLerp>().ResetColor();
     }
 
     private void OnDisable()
@@ -39,10 +40,15 @@ public class Enemy : MonoBehaviour
             Debug.LogError("PlayerCharacter component not found on the player object");
     }
     
-    public void TriggerLaughDeath()
+    public void StartDeathLaughing()
     {
-        Invoke(nameof(Deactivate), laughDeathTimer);
+        Invoke(nameof(FinishDeathLaughing), laughDeathTimer);
         GetComponent<ColorLerp>().ChangeColor(laughDeathTimer * 0.8f);
+    }
+
+    public void FinishDeathLaughing()
+    {
+        Deactivate();
     }
 
 }

@@ -34,12 +34,17 @@ public class EventManager : MonoBehaviour
     {
         // Do something when the player hits the pickup
         Debug.Log("Player: " + player.name + " hit the pickup: " + pickup.name);
+        StartEnemyDeathLaughEvent();
+        pickup.Deactivate();
     }
     
-    public void TriggerEnemyLaughDeathEvent(Enemy enemy)
+    public void StartEnemyDeathLaughEvent()
     {
-        // Do something when the enemy dies
-        Debug.Log("Enemy: " + enemy.name + " is dying of laughter");
-        enemy.TriggerLaughDeath();
+        Debug.Log("Enemies are starting to laugh");
+
+        foreach (var enemy in EnemyPool.Instance.GetActiveEnemies())
+        {
+            enemy.StartDeathLaughing();
+        }
     }
 }

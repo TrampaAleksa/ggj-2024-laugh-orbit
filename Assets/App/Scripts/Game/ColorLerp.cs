@@ -1,10 +1,20 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class ColorLerp : MonoBehaviour
 {
     public Color targetColor;
-    
+
+    private Color _initialColor;
+    private SpriteRenderer _spriteRenderer;
+
+    private void Awake()
+    {
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _initialColor = _spriteRenderer.color;
+    }
+
     // Call this method to start the color change
     public void ChangeColor(float duration)
     {
@@ -13,7 +23,7 @@ public class ColorLerp : MonoBehaviour
 
     private IEnumerator ChangeColorGradually(float duration)
     {
-        SpriteRenderer spriteRenderer = GetComponent<SpriteRenderer>();
+        SpriteRenderer spriteRenderer = _spriteRenderer;
         if (spriteRenderer == null)
         {
             yield break; // Exit if no SpriteRenderer is found
@@ -31,5 +41,10 @@ public class ColorLerp : MonoBehaviour
         }
 
         spriteRenderer.color = targetColor; // Ensure the final color is set
+    }
+
+    public void ResetColor()
+    {
+        _spriteRenderer.color = _initialColor;
     }
 }

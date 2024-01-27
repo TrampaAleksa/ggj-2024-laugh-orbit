@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 public class EnemyPool : MonoBehaviour
@@ -44,5 +45,6 @@ public class EnemyPool : MonoBehaviour
         return enemyPool.Get();
     }
     
-    
+    public List<Enemy> GetActiveEnemies() => enemyPool.GetActiveObjects();
+
 }

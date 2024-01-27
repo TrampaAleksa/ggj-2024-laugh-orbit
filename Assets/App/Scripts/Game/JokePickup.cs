@@ -15,7 +15,7 @@ public class JokePickup : MonoBehaviour
         transform.Translate(Vector3.down * (speed * Time.deltaTime));
     }
 
-    private void Deactivate()
+    public void Deactivate()
     {
         gameObject.SetActive(false);
     }
