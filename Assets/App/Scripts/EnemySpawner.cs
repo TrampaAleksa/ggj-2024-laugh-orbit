@@ -4,7 +4,6 @@ using UnityEngine.Pool;
 public class EnemySpawner : MonoBehaviour
 {
     public EnemyPool enemyPool; // Reference to the enemy object pool
-    public Enemy enemyPrefab;
     public SpawnTimer spawnTimer;
     
     private float _minX, _maxX;
@@ -30,7 +29,7 @@ public class EnemySpawner : MonoBehaviour
 
     private float CalculateEnemyHalfWidth()
     {
-        return enemyPrefab.GetComponent<SpriteRenderer>().bounds.extents.x;
+        return enemyPool.enemyPrefab.GetComponent<SpriteRenderer>().bounds.extents.x;
     }
 
     void SpawnEnemy()

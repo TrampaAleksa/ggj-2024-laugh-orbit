@@ -161,12 +161,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 264620744}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.1405067, y: -8.013026, z: -0.24240482}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 4.1405067, y: -13.743027, z: -0.24240482}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 627609839}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &627609837
 GameObject:
@@ -213,7 +213,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 5.73, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 264620746}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &627609840
@@ -325,6 +326,51 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1439526419
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1439526420}
+  - component: {fileID: 1439526421}
+  m_Layer: 0
+  m_Name: JokePool
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1439526420
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439526419}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1442899101}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1439526421
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1439526419}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99b1c9c5f847498e80c5f3f3d1548fc1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jokePickupPrefab: {fileID: 2996616909599187345, guid: 1cc2fd1e671e610448bcaa5a9ea8b6e6, type: 3}
 --- !u!1 &1442899099
 GameObject:
   m_ObjectHideFlags: 0
@@ -355,6 +401,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5eedfb1b2d4407ca5052c61bf4d0302, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jokePickupPool: {fileID: 1439526421}
   jokePickupPrefab: {fileID: 2996616909599187345, guid: 1cc2fd1e671e610448bcaa5a9ea8b6e6, type: 3}
   spawnTimer: {fileID: 1442899102}
 --- !u!4 &1442899101
@@ -369,7 +416,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 5.3, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1439526420}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1442899102
@@ -515,4 +563,3 @@ SceneRoots:
   - {fileID: 627609839}
   - {fileID: 1850109519}
   - {fileID: 1442899101}
-  - {fileID: 264620746}

@@ -3,28 +3,15 @@ using UnityEngine.Pool;
 
 public class JokeSpawner : MonoBehaviour
 {
-    public ObjectPool<JokePickup> jokePickupPool;
-    public JokePickup jokePickupPrefab;
+    public JokePool jokePickupPool;
     public SpawnTimer spawnTimer;
     
     private float minX, maxX;
 
     private void Start()
     {
-        InitializeJokePickupPool();
         CalculateScreenBoundaries();
         spawnTimer.Init(SpawnJokePickup);
-    }
-
-    private void InitializeJokePickupPool()
-    {
-        jokePickupPool = new ObjectPool<JokePickup>(
-            createFunc: () => Instantiate(jokePickupPrefab, this.transform),
-            actionOnGet: (pickup) => pickup.gameObject.SetActive(true),
-            actionOnRelease: (pickup) => pickup.gameObject.SetActive(false),
-            actionOnDestroy: (pickup) => Destroy(pickup.gameObject),
-            maxSize: 20 // Adjust as needed
-        );
     }
 
     private void CalculateScreenBoundaries()
@@ -42,12 +29,12 @@ public class JokeSpawner : MonoBehaviour
 
     private float CalculatePickupHalfWidth()
     {
-        return jokePickupPrefab.GetComponent<SpriteRenderer>().bounds.extents.x;
+        return jokePickupPool.jokePickupPrefab.GetComponent<SpriteRenderer>().bounds.extents.x;
     }
 
     void SpawnJokePickup()
     {
-        JokePickup pickup = jokePickupPool.Get();
+        JokePickup pickup = jokePickupPool.GetFromPool();
         Vector2 spawnPosition = new Vector2(Random.Range(minX, maxX), transform.position.y);
         pickup.transform.position = spawnPosition;
         pickup.gameObject.SetActive(true);
