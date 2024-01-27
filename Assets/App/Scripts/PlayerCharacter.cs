@@ -42,4 +42,6 @@ public class PlayerCharacter : MonoBehaviour
             _transform.position = new Vector2(screenHalfWidthInWorldUnits, _transform.position.y);
         }
     }
+
+
 }
