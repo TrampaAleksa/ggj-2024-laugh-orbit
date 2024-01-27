@@ -1,9 +1,12 @@
+using System.Collections;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
     public float speed = 5f; 
-    public float despawnTime = 10f; 
+    public float despawnTime = 10f;
+
+    public float laughDeathTimer = 1f;
 
     private void OnEnable()
     {
@@ -35,4 +38,11 @@ public class Enemy : MonoBehaviour
         else
             Debug.LogError("PlayerCharacter component not found on the player object");
     }
+    
+    public void TriggerLaughDeath()
+    {
+        Invoke(nameof(Deactivate), laughDeathTimer);
+        GetComponent<ColorLerp>().ChangeColor(laughDeathTimer * 0.8f);
+    }
+
 }
