@@ -3,7 +3,7 @@ using UnityEngine.Pool;
 
 public class EnemySpawner : MonoBehaviour
 {
-    public ObjectPool<Enemy> enemyPool; // Reference to the enemy object pool
+    public EnemyPool enemyPool; // Reference to the enemy object pool
     public Enemy enemyPrefab;
     public SpawnTimer spawnTimer;
     
@@ -11,21 +11,8 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
-        InitializeEnemyPool();
         CalculateScreenBoundaries();
         spawnTimer.Init(SpawnEnemy);
-    }
-
-
-    private void InitializeEnemyPool()
-    {
-        enemyPool = new ObjectPool<Enemy>(
-            createFunc: () => Instantiate(enemyPrefab, this.transform),
-            actionOnGet: (enemy) => enemy.gameObject.SetActive(true),
-            actionOnRelease: (enemy) => enemy.gameObject.SetActive(false),
-            actionOnDestroy: (enemy) => Destroy(enemy.gameObject),
-            maxSize: 50 // Set according to your needs
-        );
     }
 
     private void CalculateScreenBoundaries()
@@ -48,10 +35,8 @@ public class EnemySpawner : MonoBehaviour
 
     void SpawnEnemy()
     {
-        // Get an enemy from the pool and position it at the spawner's position
-        Enemy enemy = enemyPool.Get();
+        Enemy enemy = enemyPool.GetFromPool();
         Vector2 spawnPosition = new Vector2(Random.Range(_minX, _maxX), transform.position.y);
         enemy.transform.position = spawnPosition;
-        enemy.gameObject.SetActive(true);
     }
 }
