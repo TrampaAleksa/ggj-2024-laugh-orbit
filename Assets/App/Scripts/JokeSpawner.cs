@@ -7,6 +7,7 @@ public class JokeSpawner : MonoBehaviour
     public JokePickup jokePickupPrefab;
     public float maxSpawnInterval = 2f; 
     public float minSpawnInterval = 2f;
+    public bool IsSpawningActive = true;
     
     private float timer;
     private float minX, maxX;
@@ -21,6 +22,9 @@ public class JokeSpawner : MonoBehaviour
 
     private void Update()
     {
+        if (!IsSpawningActive)
+            return;
+        
         timer -= Time.deltaTime;
         
         if (timer <= 0)

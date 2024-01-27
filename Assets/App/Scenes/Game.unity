@@ -133,6 +133,7 @@ GameObject:
   m_Component:
   - component: {fileID: 627609839}
   - component: {fileID: 627609838}
+  - component: {fileID: 627609840}
   m_Layer: 0
   m_Name: EnemySpawner
   m_TagString: Untagged
@@ -152,9 +153,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6551a2001eb5470babc076ca43399760, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnTimer: {fileID: 627609840}
   enemyPrefab: {fileID: 1340847589149233029, guid: a0ef8b7256033704ba48447999e7e123, type: 3}
-  maxSpawnInterval: 0.7
-  minSpawnInterval: 0.08
 --- !u!4 &627609839
 Transform:
   m_ObjectHideFlags: 0
@@ -170,6 +170,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &627609840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 627609837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e66862fc2ccf4d6fb7160fba37ebb7f7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onSpawnEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  maxSpawnInterval: 0.7
+  minSpawnInterval: 0.08
 --- !u!1 &1158504352
 GameObject:
   m_ObjectHideFlags: 0
@@ -294,6 +311,7 @@ MonoBehaviour:
   jokePickupPrefab: {fileID: 2996616909599187345, guid: 1cc2fd1e671e610448bcaa5a9ea8b6e6, type: 3}
   maxSpawnInterval: 7
   minSpawnInterval: 5
+  IsSpawningActive: 1
 --- !u!4 &1442899101
 Transform:
   m_ObjectHideFlags: 0

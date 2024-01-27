@@ -4,31 +4,17 @@ using UnityEngine.Pool;
 public class EnemySpawner : MonoBehaviour
 {
     public ObjectPool<Enemy> enemyPool; // Reference to the enemy object pool
+    public SpawnTimer spawnTimer;
     public Enemy enemyPrefab;
-    public float maxSpawnInterval = 2f; // Time between each spawn
-    public float minSpawnInterval = 2f; // Time between each spawn
-    
-    private float timer; // Timer to keep track of spawning\
-    private float minX, maxX;
-    private float randomSpawnInterval => Random.Range(minSpawnInterval, maxSpawnInterval);
+    private float _minX, _maxX;
 
     private void Start()
     {
         InitializeEnemyPool();
-        InitializeTimer();
         CalculateScreenBoundaries();
+        spawnTimer.Init(SpawnEnemy);
     }
 
-    private void Update()
-    {
-        timer -= Time.deltaTime;
-
-        if (timer <= 0)
-        {
-            SpawnEnemy();
-            timer = timer = randomSpawnInterval;
-        }
-    }
 
     private void InitializeEnemyPool()
     {
@@ -41,17 +27,12 @@ public class EnemySpawner : MonoBehaviour
         );
     }
 
-    private void InitializeTimer()
-    {
-        timer = randomSpawnInterval;
-    }
-
     private void CalculateScreenBoundaries()
     {
         float screenHalfWidth = CalculateScreenHalfWidth();
         float enemyHalfWidth = CalculateEnemyHalfWidth();
-        minX = -screenHalfWidth + enemyHalfWidth;
-        maxX = screenHalfWidth - enemyHalfWidth;
+        _minX = -screenHalfWidth + enemyHalfWidth;
+        _maxX = screenHalfWidth - enemyHalfWidth;
     }
 
     private float CalculateScreenHalfWidth()
@@ -68,7 +49,7 @@ public class EnemySpawner : MonoBehaviour
     {
         // Get an enemy from the pool and position it at the spawner's position
         Enemy enemy = enemyPool.Get();
-        Vector2 spawnPosition = new Vector2(Random.Range(minX, maxX), transform.position.y);
+        Vector2 spawnPosition = new Vector2(Random.Range(_minX, _maxX), transform.position.y);
         enemy.transform.position = spawnPosition;
         enemy.gameObject.SetActive(true);
     }
