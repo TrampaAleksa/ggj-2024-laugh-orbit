@@ -31,6 +31,7 @@ public class EventManager : MonoBehaviour
         // Do something when the bullet hits the enemy
         Debug.Log("Bullet: " + bullet.name + " hit the enemy: " + enemy.name);
         enemy.health.RemoveHealth(1);
+        bullet.Deactivate();
     }
     
     public void PlayerHitPickup(PlayerCharacter player , JokePickup pickup)

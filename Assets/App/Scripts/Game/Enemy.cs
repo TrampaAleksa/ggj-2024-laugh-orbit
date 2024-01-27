@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [HideInInspector]
     public Health health;
     
     public float speed = 5f; 
@@ -31,6 +32,7 @@ public class Enemy : MonoBehaviour
     {
         EnemyPool.Instance.ReturnToPool(this);
         GetComponent<ColorLerp>().ResetColor();
+        health.ResetHealth();
     }
 
     private void OnDisable()

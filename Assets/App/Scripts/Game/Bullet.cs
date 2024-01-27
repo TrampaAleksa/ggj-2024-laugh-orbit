@@ -26,13 +26,6 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    public void Initialize(Vector3 position, Quaternion rotation)
-    {
-        transform.position = position;
-        transform.rotation = rotation;
-        gameObject.SetActive(true);
-    }
-
     public void OnTriggerEnter2D(Collider2D other)
     {
         if (!other.gameObject.CompareTag("Enemy")) 
@@ -42,5 +35,10 @@ public class Bullet : MonoBehaviour
             EventManager.Instance.BulletHitEnemyEvent(this, enemy);
         else
             Debug.LogError("Enemy component not found on the enemy object");
+    }
+    
+    public void Deactivate()
+    {
+        gameObject.SetActive(false);
     }
 }

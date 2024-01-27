@@ -54,4 +54,9 @@ public class Health : MonoBehaviour
     {
         CurrentHealth -= amount;
     }
+    
+    public void ResetHealth()
+    {
+        CurrentHealth = maxHealth;
+    }
 }
