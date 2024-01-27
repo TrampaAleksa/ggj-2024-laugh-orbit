@@ -23,4 +23,10 @@ public class EventManager : MonoBehaviour
         // Do something when the enemy hits the player
         Debug.Log("Enemy: " + enemy.name + " hit the player: " + player.name);
     }
+    
+    public void BulletHitEnemyEvent(Bullet bullet, Enemy enemy)
+    {
+        // Do something when the bullet hits the enemy
+        Debug.Log("Bullet: " + bullet.name + " hit the enemy: " + enemy.name);
+    }
 }

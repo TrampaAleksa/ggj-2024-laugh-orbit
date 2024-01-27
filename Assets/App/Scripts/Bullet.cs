@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour
@@ -30,5 +31,16 @@ public class Bullet : MonoBehaviour
         transform.position = position;
         transform.rotation = rotation;
         gameObject.SetActive(true);
+    }
+
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        if (!other.gameObject.CompareTag("Enemy")) 
+            return;
+        
+        if (other.gameObject.TryGetComponent(out Enemy enemy))
+            EventManager.Instance.BulletHitEnemyEvent(this, enemy);
+        else
+            Debug.LogError("Enemy component not found on the enemy object");
     }
 }
