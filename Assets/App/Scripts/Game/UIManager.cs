@@ -57,6 +57,12 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 0f;
     }
     
+    public void GameWon()
+    {
+        gameWonScreen.SetActive(true);
+        Time.timeScale = 0f;
+    }
+    
     public void RestartGame()
     {
         Time.timeScale = 1f;

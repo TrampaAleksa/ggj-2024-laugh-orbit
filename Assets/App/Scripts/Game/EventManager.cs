@@ -6,9 +6,12 @@ public class EventManager : MonoBehaviour
     public static EventManager Instance;
     public UIManager uiManager;
 
+    private JokePickupCounter jokeCounter;
+
     private void Awake()
     {
         Instance = this;
+        jokeCounter = gameObject.AddComponent<JokePickupCounter>();
     }
 
     public void EnemyHitPlayerEvent(PlayerCharacter player, Enemy enemy)
@@ -31,6 +34,7 @@ public class EventManager : MonoBehaviour
     {
         // Do something when the player hits the pickup
         Debug.Log("Player: " + player.name + " hit the pickup: " + pickup.name);
+        jokeCounter.AddJokeCount();
         StartEnemyDeathLaughEvent();
         pickup.Deactivate();
         OpenAiHandler.StartAiSpeach(5);
@@ -50,5 +54,16 @@ public class EventManager : MonoBehaviour
     {
         Debug.Log("Game Over");
         uiManager.GameOver();
+    }
+    
+    public void ReachedNeededJokeNumberEvent()
+    {
+        WonGameEvent();
+    }
+    
+    public void WonGameEvent()
+    {
+        Debug.Log("Game Won");
+        uiManager.GameWon();
     }
 }
