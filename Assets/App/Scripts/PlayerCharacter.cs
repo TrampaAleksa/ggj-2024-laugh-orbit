@@ -14,9 +14,9 @@ public class PlayerCharacter : MonoBehaviour
     {
         _transform = transform;
         
-        // Calculate half the screen width in world units
-        float halfPlayerWidth = _transform.localScale.x / 2f;
-        screenHalfWidthInWorldUnits = Camera.main.aspect * Camera.main.orthographicSize + halfPlayerWidth;
+        float spriteWidth = GetComponent<SpriteRenderer>().sprite.bounds.size.x;
+        float halfSpriteWidth = spriteWidth * 0.5f * transform.localScale.x; // Consider the sprite's scale
+        screenHalfWidthInWorldUnits = (Camera.main.aspect * Camera.main.orthographicSize) - halfSpriteWidth;
     }
 
     // Update is called once per frame
