@@ -1,12 +1,20 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    public Health health;
+    
     public float speed = 5f; 
     public float despawnTime = 10f;
 
     public float laughDeathTimer = 1f;
+
+    private void Awake()
+    {
+        health = GetComponent<Health>();
+    }
 
     private void OnEnable()
     {
