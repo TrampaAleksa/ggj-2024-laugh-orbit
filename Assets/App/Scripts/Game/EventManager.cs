@@ -24,6 +24,7 @@ public class EventManager : MonoBehaviour
         // Do something when the enemy hits the player
         Debug.Log("Enemy: " + enemy.name + " hit the player: " + player.name);
         player.health.RemoveHealth(1);
+        enemy.Deactivate();
     }
     
     public void BulletHitEnemyEvent(Bullet bullet, Enemy enemy)
@@ -40,6 +41,7 @@ public class EventManager : MonoBehaviour
         Debug.Log("Player: " + player.name + " hit the pickup: " + pickup.name);
         StartEnemyDeathLaughEvent();
         pickup.Deactivate();
+        OpenAiHandler.StartAiSpeach(5);
     }
     
     public void StartEnemyDeathLaughEvent()

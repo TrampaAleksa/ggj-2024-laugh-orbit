@@ -28,7 +28,7 @@ public class Enemy : MonoBehaviour
         transform.Translate(Vector3.down * (speed * Time.deltaTime));
     }
 
-    private void Deactivate()
+    public void Deactivate()
     {
         EnemyPool.Instance.ReturnToPool(this);
         GetComponent<ColorLerp>().ResetColor();
