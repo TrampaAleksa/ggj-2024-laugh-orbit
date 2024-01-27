@@ -16,6 +16,6 @@ public class PlayerCharacter : MonoBehaviour
     }
     private void Start()
     {
-        health.OnZeroHealth.AddListener(EventManager.Instance.GameOverEvent);
+        health.OnZeroHealth.AddListener(EventManager.Instance.PlayerDiedEvent);
     }
 }

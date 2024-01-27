@@ -4,19 +4,11 @@ using UnityEngine.SceneManagement;
 public class EventManager : MonoBehaviour
 {
     public static EventManager Instance;
-
+    public UIManager uiManager;
 
     private void Awake()
     {
-        if (Instance == null)
-        {
-            Instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        Instance = this;
     }
 
     public void EnemyHitPlayerEvent(PlayerCharacter player, Enemy enemy)
@@ -54,9 +46,9 @@ public class EventManager : MonoBehaviour
         }
     }
 
-    public void GameOverEvent()
+    public void PlayerDiedEvent()
     {
         Debug.Log("Game Over");
-        SceneManager.LoadScene("Game");
+        uiManager.GameOver();
     }
 }
