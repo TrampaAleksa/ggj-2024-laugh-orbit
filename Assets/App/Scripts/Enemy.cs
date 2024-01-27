@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -24,5 +25,16 @@ public class Enemy : MonoBehaviour
     private void OnDisable()
     {
         CancelInvoke(); // Ensure that no invokes are left pending
+    }
+
+    private void OnTriggerEnter2D( Collider2D other )
+    {
+        if (!other.gameObject.CompareTag("Player")) 
+            return;
+        
+        if (other.gameObject.TryGetComponent(out PlayerCharacter player))
+            EventManager.Instance.EnemyHitPlayerEvent(player, this);
+        else
+            Debug.LogError("PlayerCharacter component not found on the player object");
     }
 }
