@@ -14,6 +14,24 @@ public class Spawner : MonoBehaviour
 
     private void Start()
     {
+        InitializeEnemyPool();
+        InitializeTimer();
+        CalculateScreenBoundaries();
+    }
+
+    private void Update()
+    {
+        timer -= Time.deltaTime;
+
+        if (timer <= 0)
+        {
+            SpawnEnemy();
+            timer = timer = randomSpawnInterval;
+        }
+    }
+
+    private void InitializeEnemyPool()
+    {
         enemyPool = new ObjectPool<Enemy>(
             createFunc: () => Instantiate(enemyPrefab, this.transform),
             actionOnGet: (enemy) => enemy.gameObject.SetActive(true),
@@ -21,27 +39,29 @@ public class Spawner : MonoBehaviour
             actionOnDestroy: (enemy) => Destroy(enemy.gameObject),
             maxSize: 50 // Set according to your needs
         );
-        // Initialize timer
-        timer = randomSpawnInterval;
-        
-        // Calculate screen boundaries
-        float screenHalfWidthInWorldUnits = Camera.main.aspect * Camera.main.orthographicSize;
-        float enemyHalfWidth = enemyPrefab.GetComponent<SpriteRenderer>().bounds.extents.x;
-        minX = -screenHalfWidthInWorldUnits + enemyHalfWidth;
-        maxX = screenHalfWidthInWorldUnits - enemyHalfWidth;
     }
 
-    private void Update()
+    private void InitializeTimer()
     {
-        // Update the timer each frame
-        timer -= Time.deltaTime;
+        timer = randomSpawnInterval;
+    }
 
-        // Check if it's time to spawn a new enemy
-        if (timer <= 0)
-        {
-            SpawnEnemy();
-            timer = timer = randomSpawnInterval;
-        }
+    private void CalculateScreenBoundaries()
+    {
+        float screenHalfWidth = CalculateScreenHalfWidth();
+        float enemyHalfWidth = CalculateEnemyHalfWidth();
+        minX = -screenHalfWidth + enemyHalfWidth;
+        maxX = screenHalfWidth - enemyHalfWidth;
+    }
+
+    private float CalculateScreenHalfWidth()
+    {
+        return Camera.main.aspect * Camera.main.orthographicSize;
+    }
+
+    private float CalculateEnemyHalfWidth()
+    {
+        return enemyPrefab.GetComponent<SpriteRenderer>().bounds.extents.x;
     }
 
     void SpawnEnemy()
