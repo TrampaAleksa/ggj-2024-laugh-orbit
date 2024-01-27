@@ -5,16 +5,9 @@ using UnityEngine;
 public class TTSHandler : MonoBehaviour
 {
     public SpeechManager SpeechManag;
-    public string text;
-    public bool speak;
-    private void Update()
+    public void Speak(string text)
     {
-        if (speak)
-        {
-            speak = false;
-            SpeechManag.SpeakWithRESTAPI(text);
-        }
-
+        SpeechManag.SpeakWithRESTAPI(text);
     }
 
 
