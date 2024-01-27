@@ -26,6 +26,8 @@ public class UIManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            if (gameOverScreen.activeInHierarchy)
+                return;
             PauseGame();
         }
     }
