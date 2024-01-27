@@ -67,6 +67,10 @@ namespace com.studios.taprobana
         {
             return Choices[index].Message.FunctionCall;
         }
+        public override string ToString()
+        {
+            return $"{Id} : {Created} : {Model} : {Object} : {Choices[0].Message.Content}";
+        }
     }
 
     #region Function Call Response
