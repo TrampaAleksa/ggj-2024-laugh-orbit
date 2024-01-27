@@ -4,8 +4,9 @@ using UnityEngine.Pool;
 public class EnemySpawner : MonoBehaviour
 {
     public ObjectPool<Enemy> enemyPool; // Reference to the enemy object pool
-    public SpawnTimer spawnTimer;
     public Enemy enemyPrefab;
+    public SpawnTimer spawnTimer;
+    
     private float _minX, _maxX;
 
     private void Start()

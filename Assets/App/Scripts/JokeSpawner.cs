@@ -5,33 +5,15 @@ public class JokeSpawner : MonoBehaviour
 {
     public ObjectPool<JokePickup> jokePickupPool;
     public JokePickup jokePickupPrefab;
-    public float maxSpawnInterval = 2f; 
-    public float minSpawnInterval = 2f;
-    public bool IsSpawningActive = true;
+    public SpawnTimer spawnTimer;
     
-    private float timer;
     private float minX, maxX;
-    private float randomSpawnInterval => Random.Range(minSpawnInterval, maxSpawnInterval);
 
     private void Start()
     {
         InitializeJokePickupPool();
-        InitializeTimer();
         CalculateScreenBoundaries();
-    }
-
-    private void Update()
-    {
-        if (!IsSpawningActive)
-            return;
-        
-        timer -= Time.deltaTime;
-        
-        if (timer <= 0)
-        {
-            SpawnJokePickup();
-            timer = randomSpawnInterval;
-        }
+        spawnTimer.Init(SpawnJokePickup);
     }
 
     private void InitializeJokePickupPool()
@@ -43,11 +25,6 @@ public class JokeSpawner : MonoBehaviour
             actionOnDestroy: (pickup) => Destroy(pickup.gameObject),
             maxSize: 20 // Adjust as needed
         );
-    }
-
-    private void InitializeTimer()
-    {
-        timer = randomSpawnInterval;
     }
 
     private void CalculateScreenBoundaries()
@@ -63,6 +40,11 @@ public class JokeSpawner : MonoBehaviour
         return Camera.main.aspect * Camera.main.orthographicSize;
     }
 
+    private float CalculatePickupHalfWidth()
+    {
+        return jokePickupPrefab.GetComponent<SpriteRenderer>().bounds.extents.x;
+    }
+
     void SpawnJokePickup()
     {
         JokePickup pickup = jokePickupPool.Get();
@@ -70,12 +52,4 @@ public class JokeSpawner : MonoBehaviour
         pickup.transform.position = spawnPosition;
         pickup.gameObject.SetActive(true);
     }
-
-
-    private float CalculatePickupHalfWidth()
-    {
-        // Adjust if JokePickup uses a different component or sizing logic
-        return jokePickupPrefab.GetComponent<SpriteRenderer>().bounds.extents.x;
-    }
-
 }
