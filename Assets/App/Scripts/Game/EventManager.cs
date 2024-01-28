@@ -11,6 +11,8 @@ public class EventManager : MonoBehaviour
     private JokePickupCounter jokeCounter;
     private JokeSpawner _jokeSpawner;
 
+    public float knockbackStrength = 10f;
+
     private void Awake()
     {
         Instance = this;
@@ -31,6 +33,7 @@ public class EventManager : MonoBehaviour
         // Do something when the bullet hits the enemy
         Debug.Log("Bullet: " + bullet.name + " hit the enemy: " + enemy.name);
         enemy.health.RemoveHealth(1);
+        enemy.knockbackEffect.ApplyKnockback(enemy.transform, knockbackStrength, 0.5f);
         bullet.Deactivate();
     }
     

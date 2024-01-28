@@ -12,6 +12,9 @@ public class Enemy : MonoBehaviour
 
     public float laughDeathTimer = 1f;
 
+    [SerializeField]
+    public KnockbackEffect knockbackEffect;
+
     private ColorLerp _colorLerp;
 
     private void Awake()
@@ -20,6 +23,7 @@ public class Enemy : MonoBehaviour
         health.OnZeroHealth.AddListener(DeactivateWithExplosion);
 
         _colorLerp = GetComponentInChildren<ColorLerp>();
+        knockbackEffect = gameObject.AddComponent<KnockbackEffect>();
     }
 
     private void OnEnable()
