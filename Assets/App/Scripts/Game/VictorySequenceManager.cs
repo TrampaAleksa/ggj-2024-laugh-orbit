@@ -70,7 +70,8 @@ public class VictorySequenceManager : MonoBehaviour
     
     private void BeginNarratingIntro()
     {
-        TTSHandler.Speak("Oh no", BeginFinalJoke);
+        JokeNarrator.Instance.StartNarrating();
+        TTSHandler.Speak("Oh no, its the big boss. Here, let me help you out with my ultimate joke.", BeginFinalJoke);
     }
     
     private void BeginFinalJoke()
@@ -90,11 +91,13 @@ public class VictorySequenceManager : MonoBehaviour
     
     private void BeginNarratingOutro()
     {
+        JokeNarrator.Instance.StartNarrating();
         TTSHandler.Speak("Whoops, your ship also exploded, my bad. Well, that's fine. Why don't you play again and hear more jokes?", OnOutroFinished);
     }
     
     private void OnOutroFinished()
     {
+        JokeNarrator.Instance.EndNarrating();
         uiManager.GameWon();
         
     }

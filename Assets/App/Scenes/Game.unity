@@ -1102,8 +1102,8 @@ MonoBehaviour:
   playerMoveDuration: 2.5
   delayBeforeBossEntry: 1
   bossMoveDuration: 3.5
-  delayAfterBossStops: 2
-  delayAfterFinalJoke: 1
+  delayAfterBossStops: 0.8
+  delayAfterFinalJoke: 2
 --- !u!4 &865496922
 Transform:
   m_ObjectHideFlags: 0

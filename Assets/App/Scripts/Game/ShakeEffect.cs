@@ -19,13 +19,13 @@ public class ShakeEffect : MonoBehaviour
         _rectTransform = GetComponent<RectTransform>();
     }
 
-    public ShakeEffect StartShake(float duration)
+    public ShakeEffect StartShake()
     {
         _rectTransform.DOShakeAnchorPos(loopDuration, new Vector3(0.1f, strength, 0), vibrato, randomness, snapping)
             .SetLoops(-1, LoopType.Restart) // -1 for infinite loops
             .SetUpdate(UpdateType.Normal, true);
 
-        Invoke(nameof(StopShake), duration);
+        // Invoke(nameof(StopShake), duration);
         return this;
     }
     

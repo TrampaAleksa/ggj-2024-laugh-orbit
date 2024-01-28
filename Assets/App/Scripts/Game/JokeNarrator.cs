@@ -20,17 +20,16 @@ public class JokeNarrator : MonoBehaviour
         _startPosition = GetComponent<RectTransform>().anchoredPosition; // Use anchoredPosition for RectTransform
     }
 
-    public void StartNarrating(float duration)
+    public void StartNarrating()
     {
         RectTransform rectTransform = GetComponent<RectTransform>();
-
+        
         // Move to the end position
         rectTransform.DOAnchorPos(endPosition.anchoredPosition, entryTime)
             .SetEase(Ease.InOutSine)
             .OnComplete(() =>
             {
-                _shakeEffect.StartShake(duration)
-                    .OnComplete(EndNarrating); // Chain OnComplete for ending narration; // Start shake after moving
+                _shakeEffect.StartShake();
             });
     }
     
@@ -38,6 +37,7 @@ public class JokeNarrator : MonoBehaviour
     {
         RectTransform rectTransform = GetComponent<RectTransform>();
 
+        _shakeEffect.StopShake();
         // Move back to the start position
         rectTransform.DOAnchorPos(_startPosition, 0.3f).SetEase(Ease.InOutSine);
     }
