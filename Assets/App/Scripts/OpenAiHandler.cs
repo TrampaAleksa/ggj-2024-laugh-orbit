@@ -12,7 +12,6 @@ public class OpenAiHandler : MonoBehaviour
 {
     public TTSHandler TTSHandler;
     public TMPro.TMP_Text label;
-    public OpenAIConfiguration OpenAIConfiguration;
     public bool Speak;
     public bool ToogleSpeak;
     public int indexTest;
@@ -65,30 +64,24 @@ public class OpenAiHandler : MonoBehaviour
     }
     public static void StartAiSpeach(int id, Action onComplete)
     {
-        instance.GetOpenAiAnswer(id);
-        instance.OnComplete = onComplete;
-        instance.Invoke(nameof(SimulateOnComplete), 5f);
-    }
-    public void SimulateOnComplete()
-    {
-        OnComplete?.Invoke();
+        instance.GetOpenAiAnswer(id, onComplete:onComplete);
     }
     
     
-    private void GetOpenAiAnswer(int id, Mode mode= Mode.STANDUP)
+    private void GetOpenAiAnswer(int id, Mode mode= Mode.STANDUP, Action onComplete=null)
     {
         messages.Add(new Message(Role.User, BuildString(id, mode)));
         var chatRequest = new ChatRequest(messages, model);
         var response = OpenAIClient.ChatEndpoint.GetCompletionAsync(chatRequest).GetAwaiter();
-        response.OnCompleted(()=> OnCompleteStartTTS(response.GetResult()));
+        response.OnCompleted(()=> OnCompleteStartTTS(response.GetResult(), onComplete));
     }
-    private void OnCompleteStartTTS(ChatResponse chatResponse)
+    private void OnCompleteStartTTS(ChatResponse chatResponse, Action onComplete)
     {
         var choice = chatResponse.FirstChoice;
         messages.Add(choice.Message);
         string text = choice.Message.Content.ToString();
         label.text = text;
-        if(ToogleSpeak) TTSHandler.Speak(choice.Message.Content.ToString());
+        if(ToogleSpeak) TTSHandler.Speak(choice.Message.Content.ToString(), onComplete);
         
     }
     private string BuildString(int id, Mode mode) => $"{id}_{mode.ToString()}";

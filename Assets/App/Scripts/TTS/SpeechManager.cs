@@ -145,6 +145,7 @@ public class SpeechManager : MonoBehaviour {
                 Debug.Log($"Trigger playback of audio clip on AudioSource.");
                 // Play audio
                 audioSource.Play();
+                Invoke(nameof(OnAudioCompleted), clip.length);
             }
             catch (Exception ex)
             {
@@ -153,6 +154,11 @@ public class SpeechManager : MonoBehaviour {
             }
         }
     }
+    private void OnAudioCompleted()
+    {
+        OnCompleted?.Invoke();
+        OnCompleted = null;
+    }
 
     /// <summary>
     /// Unity Coroutine that monitors the Task used to synthesize speech from a text string.
@@ -160,8 +166,9 @@ public class SpeechManager : MonoBehaviour {
     /// </summary>
     /// <param name="speakTask"></param>
     /// <returns></returns>
-    private IEnumerator WaitAndPlayRoutineREST(Task<Stream> speakTask)
+    private IEnumerator WaitAndPlayRoutineREST(Task<Stream> speakTask, Action onComplete)
     {
+        OnCompleted = onComplete;
         // Yield control back to the main thread as long as the task is still running
         while (!speakTask.IsCompleted)
         {
@@ -176,13 +183,14 @@ public class SpeechManager : MonoBehaviour {
             PlayAudio(resultStream);
         }
     }
+    private Action OnCompleted;
 
     /// <summary>
     /// Converts a text string into synthesized speech using Microsoft Cognitive Services, then
     /// starts audio playback using the assigned audio source.
     /// </summary>
     /// <param name="message"></param>
-    public void SpeakWithRESTAPI(string message)
+    public void SpeakWithRESTAPI(string message, Action onComplete)
     {
         try
         {
@@ -214,7 +222,7 @@ public class SpeechManager : MonoBehaviour {
 
             // We can't await the task without blocking the main Unity thread, so we'll call a coroutine to
             // monitor completion and play audio when it's ready.
-            StartCoroutine(WaitAndPlayRoutineREST(Speaking));
+            StartCoroutine(WaitAndPlayRoutineREST(Speaking, onComplete));
         }
         catch (Exception ex)
         {

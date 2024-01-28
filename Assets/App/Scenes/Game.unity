@@ -543,7 +543,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4264971218416013378, guid: ce885dd9d82c84449b8e1a5eee0456a4, type: 3}
       propertyPath: ToogleSpeak
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6491283556991243458, guid: ce885dd9d82c84449b8e1a5eee0456a4, type: 3}
       propertyPath: m_LocalPosition.x
