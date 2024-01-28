@@ -3,7 +3,7 @@ using UnityEngine;
 public class JokePickupCounter : MonoBehaviour
 {
     private int jokeCount = 0;
-    public int jokesForWin = 1;
+    public int jokesForWin = 7;
     public int AddJokeCount(out bool isReactWin)
     {
         jokeCount++;
