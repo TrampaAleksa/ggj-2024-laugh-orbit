@@ -12,10 +12,14 @@ public class Enemy : MonoBehaviour
 
     public float laughDeathTimer = 1f;
 
+    private ColorLerp _colorLerp;
+
     private void Awake()
     {
         health = GetComponent<Health>();
         health.OnZeroHealth.AddListener(Deactivate);
+
+        _colorLerp = GetComponentInChildren<ColorLerp>();
     }
 
     private void OnEnable()
@@ -31,7 +35,7 @@ public class Enemy : MonoBehaviour
     public void Deactivate()
     {
         EnemyPool.Instance.ReturnToPool(this);
-        GetComponent<ColorLerp>().ResetColor();
+        _colorLerp.ResetColor();
         health.ResetHealth();
     }
 
@@ -54,7 +58,7 @@ public class Enemy : MonoBehaviour
     public void StartDeathLaughing()
     {
         Invoke(nameof(FinishDeathLaughing), laughDeathTimer);
-        GetComponent<ColorLerp>().ChangeColor(laughDeathTimer * 0.8f);
+        _colorLerp.ChangeColor(laughDeathTimer * 0.8f);
     }
 
     public void FinishDeathLaughing()

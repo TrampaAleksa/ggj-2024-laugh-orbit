@@ -401,6 +401,7 @@ MonoBehaviour:
   jokeSpawner: {fileID: 1442899100}
   playerCharacter: {fileID: 1579576330}
   cinematicTween: {fileID: 128310144}
+  uiManager: {fileID: 1577294845}
   boss: {fileID: 1426816923}
   bossTargetPosition: {fileID: 4626489531899282081}
   delayBeforeBeginningSequence: 3

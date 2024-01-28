@@ -8,6 +8,7 @@ public class VictorySequenceManager : MonoBehaviour
     public JokeSpawner jokeSpawner;
     public PlayerCharacter playerCharacter;
     public CinematicEffectTween cinematicTween;
+    public UIManager uiManager;
 
     public Transform boss;
     public Transform bossTargetPosition;
@@ -67,27 +68,27 @@ public class VictorySequenceManager : MonoBehaviour
     
     private void BeginNarratingIntro()
     {
-        
+        BeginFinalJoke();
     }
     
     private void BeginFinalJoke()
     {
-        
+        OnFinalJokeFinished();
     }
 
     private void OnFinalJokeFinished()
     {
-        
+        BeginNarratingOutro();
     }
     
     private void BeginNarratingOutro()
     {
-        
+        OnOutroFinished();
     }
     
     private void OnOutroFinished()
     {
-        
+        uiManager.GameWon();
     }
     
     
