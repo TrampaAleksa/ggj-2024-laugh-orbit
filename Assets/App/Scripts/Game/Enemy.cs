@@ -34,9 +34,12 @@ public class Enemy : MonoBehaviour
 
     public void Deactivate()
     {
+        var explosion = ExplosionPool.Instance.GetFromPool();
+        explosion.transform.position = transform.position;
         EnemyPool.Instance.ReturnToPool(this);
         _colorLerp.ResetColor();
         health.ResetHealth();
+     
     }
 
     private void OnDisable()
