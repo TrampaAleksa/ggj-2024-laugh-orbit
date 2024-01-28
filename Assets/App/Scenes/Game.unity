@@ -242,7 +242,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   maxSpawnInterval: 0.7
-  minSpawnInterval: 0.08
+  minSpawnInterval: 0.1
 --- !u!1 &865496920
 GameObject:
   m_ObjectHideFlags: 0
@@ -275,6 +275,8 @@ MonoBehaviour:
   enemySpawner: {fileID: 627609838}
   jokeSpawner: {fileID: 1442899100}
   playerCharacter: {fileID: 1579576330}
+  delayBeforeBeginningSequence: 5
+  playerMoveDuration: 2.5
 --- !u!4 &865496922
 Transform:
   m_ObjectHideFlags: 0

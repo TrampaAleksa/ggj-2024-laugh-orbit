@@ -1,3 +1,4 @@
+using DG.Tweening;
 using UnityEngine;
 
 public class VictorySequenceManager : MonoBehaviour
@@ -5,6 +6,10 @@ public class VictorySequenceManager : MonoBehaviour
     public EnemySpawner enemySpawner;
     public JokeSpawner jokeSpawner;
     public PlayerCharacter playerCharacter;
+
+    public float delayBeforeBeginningSequence = 3f;
+    [SerializeField]
+    private float playerMoveDuration = 1.0f;
     
     public void WinGame()
     {
@@ -22,11 +27,16 @@ public class VictorySequenceManager : MonoBehaviour
 
         foreach (var jokePickup in jokePickups)
             jokePickup.Deactivate();
+        
+        Invoke(nameof(BeginPlayerMovement), delayBeforeBeginningSequence);
     }
 
     private void BeginPlayerMovement()
     {
+        playerCharacter.playerMovement.enabled = false;
+        playerCharacter.playerShooting.enabled = false;
         
+        MoveObjectToCenter(playerCharacter.transform);
     }
 
     public void BeginFinalMusic()
@@ -64,5 +74,13 @@ public class VictorySequenceManager : MonoBehaviour
         
     }
     
+    
+    
+  
+    public void MoveObjectToCenter(Transform playerTransform)
+    {
+        float centerX = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, 0, 0)).x;
+        playerTransform.DOMoveX(centerX, playerMoveDuration).SetEase(Ease.OutQuad); 
+    }
     
 }

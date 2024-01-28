@@ -103,9 +103,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: {fileID: 0}
-  speed: 1.8
+  speed: 2.4
   despawnTime: 15
-  laughDeathTimer: 1
+  laughDeathTimer: 0.8
 --- !u!61 &182996535850733607
 BoxCollider2D:
   m_ObjectHideFlags: 0
