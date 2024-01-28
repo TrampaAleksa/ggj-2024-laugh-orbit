@@ -12,6 +12,8 @@ public class PlayerCharacter : MonoBehaviour
     [HideInInspector]
     public PlayerShooting playerShooting;
 
+    public SpriteRenderer playerRenderer;
+
     private void Awake()
     {
         health = GetComponent<Health>();

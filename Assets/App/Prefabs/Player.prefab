@@ -138,6 +138,7 @@ MonoBehaviour:
   health: {fileID: 0}
   playerMovement: {fileID: 0}
   playerShooting: {fileID: 0}
+  playerRenderer: {fileID: 2718393093414089241}
 --- !u!114 &220389785444698991
 MonoBehaviour:
   m_ObjectHideFlags: 0
