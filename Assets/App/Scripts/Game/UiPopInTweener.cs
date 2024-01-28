@@ -1,41 +1,46 @@
 ﻿using System;
 using System.Collections;
+using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class UiPopInTweener : MonoBehaviour
 {
-    private Vector3 originalPosition;
-    private RectTransform _rectTransform;
-
-    private void Awake()
-    {
-        originalPosition = _rectTransform.anchoredPosition;
-        _rectTransform = GetComponent<RectTransform>();
-    }
+    public RectTransform rectTransform;
+    public RectTransform originalPosition;
 
     public void PopIn(float duration)
     {
-        _rectTransform.anchoredPosition = originalPosition;
+        rectTransform.anchoredPosition = originalPosition.anchoredPosition;
+
         gameObject.SetActive(true);
-        StartCoroutine(MoveAndResize(duration));
+        MoveToCenter(duration);
     }
-
-    private IEnumerator MoveAndResize(float duration)
+    
+    public void PopOut(float duration)
     {
-        float timeElapsed = 0f;
-
-        var center = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width / 2, Screen.height / 2, 0));
-        Vector2 targetPosition = new Vector2(center.x, center.y);
-
-        while (timeElapsed < duration)
-        {
-            float t = timeElapsed / duration; // Normalized time
-
-            _rectTransform.anchoredPosition = Vector2.Lerp(originalPosition, targetPosition, t);
-
-            timeElapsed += Time.unscaledDeltaTime;
-            yield return null;
-        }
-        _rectTransform.anchoredPosition = targetPosition;
+        gameObject.SetActive(true);
+        MoveToOriginalPosition(duration);
     }
+    
+    private void MoveToCenter(float duration)
+    {
+        // Calculate the center of the screen in the local space of the RectTransform
+        Vector2 screenCenter = new Vector2(Screen.width / 2f, Screen.height / 2f);
+        Vector2 localCenter = Vector2.zero;
+        Canvas parentCanvas = rectTransform.GetComponentInParent<Canvas>();
+        if (parentCanvas != null)
+        {
+            RectTransformUtility.ScreenPointToLocalPointInRectangle(parentCanvas.GetComponent<RectTransform>(), screenCenter, parentCanvas.worldCamera, out localCenter);
+        }
+
+        // Use DoTween to move the RectTransform towards the calculated center
+        rectTransform.DOAnchorPos(localCenter, duration).SetEase(Ease.OutQuad).SetUpdate(true);
+    }
+    
+    private void MoveToOriginalPosition(float duration)
+    {
+        rectTransform.DOAnchorPos(originalPosition.anchoredPosition, duration).SetEase(Ease.OutQuad).SetUpdate(true);
+    }
+    
 }

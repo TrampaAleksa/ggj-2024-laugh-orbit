@@ -8,14 +8,19 @@ public class UIManager : MonoBehaviour
     public GameObject pauseScreen;
     public Button pauseContinueButton;
     public Button pauseExitButton;
+    public UiPopInTweener pausePopIn;
 
     public GameObject gameOverScreen;
     public Button gameOverRestartButton;
     public Button gameOverExitButton;
+    public UiPopInTweener gameOverPopIn;
     
     public GameObject gameWonScreen;
     public Button gameWonRestartButton;
     public Button gameWonExitButton;
+    public UiPopInTweener gameWonPopIn;
+
+    public float popInDuration = 0.3f;
 
     private void Awake()
     {
@@ -41,25 +46,25 @@ public class UIManager : MonoBehaviour
 
     public void PauseGame()
     {
-        pauseScreen.SetActive(true);
+        pausePopIn.PopIn(popInDuration);
         Time.timeScale = 0f;
     }
     
     public void ContinueGame()
     {
-        pauseScreen.SetActive(false);
+        pausePopIn.PopOut(popInDuration);
         Time.timeScale = 1f;
     }
 
     public void GameOver()
     {
-        gameOverScreen.SetActive(true);
+        gameOverPopIn.PopIn(popInDuration);
         Time.timeScale = 0f;
     }
     
     public void GameWon()
     {
-        gameWonScreen.SetActive(true);
+        gameWonPopIn.PopIn(popInDuration);
         Time.timeScale = 0f;
     }
     
