@@ -6,7 +6,6 @@ using OpenAI;
 using OpenAI.Assistants;
 using OpenAI.Chat;
 using OpenAI.Models;
-using UnityEditor.Timeline.Actions;
 
 public class OpenAiHandler : MonoBehaviour
 {
@@ -69,10 +68,20 @@ public class OpenAiHandler : MonoBehaviour
         int secound = UnityEngine.Random.Range(0, 2);
         first = UnityEngine.Random.Range(first, secound);
         Mode mode = (Mode)first;
+        
+        
+        JokeNarrator.Instance.StartNarrating();
+        onComplete += JokeNarrator.Instance.EndNarrating;
+        
         instance.GetOpenAiAnswer(id, onComplete:onComplete);
+        
+        
     }
     public static void StartAiSpeach(int id, Mode mode, Action onComplete)
     {
+        JokeNarrator.Instance.StartNarrating();
+        onComplete += JokeNarrator.Instance.EndNarrating;
+        
         instance.GetOpenAiAnswer(id, mode, onComplete: onComplete);
     }
 
