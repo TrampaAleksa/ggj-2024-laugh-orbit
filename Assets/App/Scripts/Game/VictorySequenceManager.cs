@@ -6,6 +6,7 @@ public class VictorySequenceManager : MonoBehaviour
     public EnemySpawner enemySpawner;
     public JokeSpawner jokeSpawner;
     public PlayerCharacter playerCharacter;
+    public CinematicEffectTween cinematicTween;
 
     public float delayBeforeBeginningSequence = 3f;
     [SerializeField]
@@ -37,11 +38,17 @@ public class VictorySequenceManager : MonoBehaviour
         playerCharacter.playerShooting.enabled = false;
         
         MoveObjectToCenter(playerCharacter.transform);
+        BeginCinematicView();
     }
 
     public void BeginFinalMusic()
     {
         
+    }
+    
+    public void BeginCinematicView()
+    {
+        cinematicTween.StartMoveAndResize();
     }
 
     private void BeginBossEntry()
