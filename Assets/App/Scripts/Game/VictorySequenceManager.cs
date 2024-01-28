@@ -90,7 +90,7 @@ public class VictorySequenceManager : MonoBehaviour
     
     private void BeginNarratingOutro()
     {
-        TTSHandler.Speak("Whoops, your ship also exploded, my bad", OnOutroFinished);
+        TTSHandler.Speak("Whoops, your ship also exploded, my bad. Well, that's fine. Why don't you play again and hear more jokes?", OnOutroFinished);
     }
     
     private void OnOutroFinished()
