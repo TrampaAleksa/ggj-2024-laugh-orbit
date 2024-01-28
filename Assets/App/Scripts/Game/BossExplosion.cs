@@ -3,8 +3,8 @@
 public class BossExplosion : MonoBehaviour
 {
     public float delay;
-    
-    public void Start()
+
+    public void StartExplosion()
     {
         Invoke(nameof(Explode), delay);
     }
