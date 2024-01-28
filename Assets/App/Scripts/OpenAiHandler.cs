@@ -62,12 +62,21 @@ public class OpenAiHandler : MonoBehaviour
     {
         instance.GetOpenAiAnswer(id);
     }
+    int lastMode = -1;
     public static void StartAiSpeach(int id, Action onComplete)
-    {
+    { 
+        int first= UnityEngine.Random.Range(0, 1);
+        int secound = UnityEngine.Random.Range(0, 2);
+        first = UnityEngine.Random.Range(first, secound);
+        Mode mode = (Mode)first;
         instance.GetOpenAiAnswer(id, onComplete:onComplete);
     }
-    
-    
+    public static void StartAiSpeach(int id, Mode mode, Action onComplete)
+    {
+        instance.GetOpenAiAnswer(id, mode, onComplete: onComplete);
+    }
+
+
     private void GetOpenAiAnswer(int id, Mode mode= Mode.STANDUP, Action onComplete=null)
     {
         messages.Add(new Message(Role.User, BuildString(id, mode)));
@@ -88,7 +97,7 @@ public class OpenAiHandler : MonoBehaviour
 }
 public enum Mode
 {
-    ROAST,
-    DAD,
-    STANDUP
+    ROAST=1,
+    DAD=2,
+    STANDUP=0
 }

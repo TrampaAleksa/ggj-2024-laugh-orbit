@@ -6,9 +6,14 @@ using UnityEngine;
 public class TTSHandler : MonoBehaviour
 {
     public SpeechManager SpeechManag;
-    public void Speak(string text,Action onComplete)
+    private static TTSHandler instance;
+    private void Awake()
     {
-        SpeechManag.SpeakWithRESTAPI(text, onComplete);
+        instance = this;
+    }
+    public static void Speak(string text,Action onComplete)
+    {
+        instance.SpeechManag.SpeakWithRESTAPI(text, onComplete);
     }
 
 

@@ -68,12 +68,12 @@ public class VictorySequenceManager : MonoBehaviour
     
     private void BeginNarratingIntro()
     {
-        BeginFinalJoke();
+        TTSHandler.Speak("Oh no", BeginFinalJoke);
     }
     
     private void BeginFinalJoke()
     {
-        OnFinalJokeFinished();
+        OpenAiHandler.StartAiSpeach(10,Mode.ROAST, OnFinalJokeFinished);
     }
 
     private void OnFinalJokeFinished()
@@ -83,12 +83,13 @@ public class VictorySequenceManager : MonoBehaviour
     
     private void BeginNarratingOutro()
     {
-        OnOutroFinished();
+        TTSHandler.Speak("Whoops, your ship also exploaded, my bad", OnOutroFinished);
     }
     
     private void OnOutroFinished()
     {
         uiManager.GameWon();
+        
     }
     
     

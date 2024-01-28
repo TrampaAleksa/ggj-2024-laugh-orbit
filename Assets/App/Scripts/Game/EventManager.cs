@@ -41,14 +41,18 @@ public class EventManager : MonoBehaviour
         StartEnemyDeathLaughEvent();
         
         pickup.Deactivate();
-        jokeCounter.AddJokeCount();
+        int jokeCount=jokeCounter.AddJokeCount(out bool isReach);
         _jokeSpawner.spawnTimer.Stop();
         var jokePickups = _jokeSpawner.jokePickupPool.jokePickupPool.GetActiveObjects();
 
         foreach (var jokePickup in jokePickups)
             jokePickup.Deactivate();
-        
-        OpenAiHandler.StartAiSpeach(5, () => _jokeSpawner.spawnTimer.Continue());
+
+
+        if (!isReach)
+        {
+            OpenAiHandler.StartAiSpeach(5+ jokeCount, () => _jokeSpawner.spawnTimer.Continue());
+        }
     }
     
     public void StartEnemyDeathLaughEvent()

@@ -4,12 +4,14 @@ public class JokePickupCounter : MonoBehaviour
 {
     private int jokeCount = 0;
     public int jokesForWin = 3;
-    public void AddJokeCount()
+    public int AddJokeCount(out bool isReactWin)
     {
         jokeCount++;
-        if ( jokeCount == jokesForWin )
+        isReactWin = jokeCount == jokesForWin;
+        if (isReactWin)
         {
             EventManager.Instance.ReachedNeededJokeNumberEvent();
         }
+        return jokeCount;
     }
 }

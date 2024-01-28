@@ -157,7 +157,6 @@ public class SpeechManager : MonoBehaviour {
     private void OnAudioCompleted()
     {
         OnCompleted?.Invoke();
-        OnCompleted = null;
     }
 
     /// <summary>
