@@ -66,6 +66,13 @@ public class EventManager : MonoBehaviour
         {
             enemy.StartDeathLaughing();
         }
+        
+        Invoke(nameof(BigExplosionSound), 1f);
+    }
+
+    private void BigExplosionSound()
+    {
+        GameSounds.Instance.PlayPickupExplosionSound();
     }
 
     public void PlayerDiedEvent()

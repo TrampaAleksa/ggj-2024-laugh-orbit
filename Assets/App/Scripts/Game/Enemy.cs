@@ -20,7 +20,7 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         health = GetComponent<Health>();
-        health.OnZeroHealth.AddListener(DeactivateWithExplosion);
+        health.OnZeroHealth.AddListener(() => DeactivateWithExplosion());
 
         _colorLerp = GetComponentInChildren<ColorLerp>();
         knockbackEffect = gameObject.AddComponent<KnockbackEffect>();
@@ -43,9 +43,11 @@ public class Enemy : MonoBehaviour
         health.ResetHealth();
      
     }
-    public void DeactivateWithExplosion()
+    public void DeactivateWithExplosion(bool playSound = true)
     {
         var explosion = ExplosionPool.Instance.GetFromPool();
+        if (playSound)
+            GameSounds.Instance.PlaySmallExplosionSound();
         explosion.transform.position = transform.position;
         Deactivate();
     }
@@ -74,7 +76,7 @@ public class Enemy : MonoBehaviour
 
     public void FinishDeathLaughing()
     {
-        DeactivateWithExplosion();
+        DeactivateWithExplosion(false);
     }
 
 }

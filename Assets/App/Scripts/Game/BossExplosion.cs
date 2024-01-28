@@ -12,6 +12,7 @@ public class BossExplosion : MonoBehaviour
     public void Explode()
     {
         var explosion = ExplosionPool.Instance.GetFromPool();
+        GameSounds.Instance.PlayBossExplosionSound();
         explosion.transform.position = transform.position;
         explosion.gameObject.SetActive(true);
     }
