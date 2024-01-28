@@ -730,13 +730,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCharacter: {fileID: 1579576330}
-  bossExplosions:
-  - {fileID: 8351891123944509506}
-  - {fileID: 6443294272946032742}
-  - {fileID: 7212220888726945418}
-  - {fileID: 6048657998834021068}
-  - {fileID: 5469715451064463634}
-  - {fileID: 8927321420050649344}
 --- !u!1 &1158504352
 GameObject:
   m_ObjectHideFlags: 0
