@@ -1,5 +1,6 @@
 using DG.Tweening;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class VictorySequenceManager : MonoBehaviour
 {
@@ -8,10 +9,16 @@ public class VictorySequenceManager : MonoBehaviour
     public PlayerCharacter playerCharacter;
     public CinematicEffectTween cinematicTween;
 
+    public Transform boss;
+    public Transform bossTargetPosition;
+
     public float delayBeforeBeginningSequence = 3f;
-    [SerializeField]
-    private float playerMoveDuration = 1.0f;
-    
+    public float playerMoveDuration = 1.0f;
+    public float delayBeforeBossEntry = 2f;
+    public float bossMoveDuration = 5.0f;
+    public float delayAfterBossStops = 2f;
+
+
     public void WinGame()
     {
         PrepareForEndSequence();
@@ -39,6 +46,7 @@ public class VictorySequenceManager : MonoBehaviour
         
         MoveObjectToCenter(playerCharacter.transform);
         BeginCinematicView();
+        Invoke(nameof(BeginBossEntry), cinematicTween.duration + delayBeforeBossEntry);
     }
 
     public void BeginFinalMusic()
@@ -53,7 +61,8 @@ public class VictorySequenceManager : MonoBehaviour
 
     private void BeginBossEntry()
     {
-        
+        boss.DOMove(bossTargetPosition.position, bossMoveDuration).SetEase(Ease.OutQuad); 
+        Invoke(nameof(BeginNarratingIntro), bossMoveDuration + delayAfterBossStops);
     }
     
     private void BeginNarratingIntro()
