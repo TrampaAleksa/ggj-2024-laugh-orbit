@@ -150,7 +150,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18b0e0156e8d4e919f16ce50ee5bf15e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  shootInterval: 0.5
+  shootInterval: 0.35
 --- !u!61 &4107241697941555929
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -235,7 +235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7af672e2ea4c4e768eab8d26323a1477, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 8
 --- !u!114 &8037193945123049393
 MonoBehaviour:
   m_ObjectHideFlags: 0

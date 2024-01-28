@@ -562,8 +562,8 @@ MonoBehaviour:
   onSpawnEvent:
     m_PersistentCalls:
       m_Calls: []
-  maxSpawnInterval: 3
-  minSpawnInterval: 2
+  maxSpawnInterval: 5
+  minSpawnInterval: 1
 --- !u!1 &1486583079
 GameObject:
   m_ObjectHideFlags: 0
@@ -1188,10 +1188,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 220389785444698991, guid: 4290b0417e7b0354e9c2dc6da8afdae6, type: 3}
-      propertyPath: shootInterval
-      value: 0.3
-      objectReference: {fileID: 0}
     - target: {fileID: 512511351086012151, guid: 4290b0417e7b0354e9c2dc6da8afdae6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1251,10 +1247,6 @@ PrefabInstance:
     - target: {fileID: 4918828998921912398, guid: 4290b0417e7b0354e9c2dc6da8afdae6, type: 3}
       propertyPath: m_SleepingMode
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6978117179372552818, guid: 4290b0417e7b0354e9c2dc6da8afdae6, type: 3}
-      propertyPath: speed
-      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
