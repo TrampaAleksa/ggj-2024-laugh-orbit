@@ -39,4 +39,6 @@ public class JokeSpawner : MonoBehaviour
         pickup.transform.position = spawnPosition;
         pickup.gameObject.SetActive(true);
     }
+
+    private void ContinueSpawning() => spawnTimer.Continue();
 }

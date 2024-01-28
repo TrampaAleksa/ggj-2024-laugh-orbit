@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,7 @@ using OpenAI;
 using OpenAI.Assistants;
 using OpenAI.Chat;
 using OpenAI.Models;
+using UnityEditor.Timeline.Actions;
 
 public class OpenAiHandler : MonoBehaviour
 {
@@ -18,6 +20,7 @@ public class OpenAiHandler : MonoBehaviour
     public Model model= Model.GPT3_5_Turbo;
     List<Message> messages = new List<Message>();
     OpenAIClient OpenAIClient;
+    Action OnComplete;
     //Dad Jokes
     //Standup
     //Roast
@@ -60,6 +63,18 @@ public class OpenAiHandler : MonoBehaviour
     {
         instance.GetOpenAiAnswer(id);
     }
+    public static void StartAiSpeach(int id, Action onComplete)
+    {
+        instance.GetOpenAiAnswer(id);
+        instance.OnComplete = onComplete;
+        instance.Invoke(nameof(SimulateOnComplete), 5f);
+    }
+    public void SimulateOnComplete()
+    {
+        OnComplete?.Invoke();
+    }
+    
+    
     private void GetOpenAiAnswer(int id, Mode mode= Mode.STANDUP)
     {
         messages.Add(new Message(Role.User, BuildString(id, mode)));

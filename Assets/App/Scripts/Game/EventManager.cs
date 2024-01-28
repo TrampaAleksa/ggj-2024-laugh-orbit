@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,11 +9,13 @@ public class EventManager : MonoBehaviour
     public VictorySequenceManager victorySequence;
 
     private JokePickupCounter jokeCounter;
+    private JokeSpawner _jokeSpawner;
 
     private void Awake()
     {
         Instance = this;
         jokeCounter = gameObject.AddComponent<JokePickupCounter>();
+        _jokeSpawner = FindObjectOfType<JokeSpawner>();
     }
 
     public void EnemyHitPlayerEvent(PlayerCharacter player, Enemy enemy)
@@ -35,10 +38,17 @@ public class EventManager : MonoBehaviour
     {
         // Do something when the player hits the pickup
         Debug.Log("Player: " + player.name + " hit the pickup: " + pickup.name);
-        jokeCounter.AddJokeCount();
         StartEnemyDeathLaughEvent();
+        
         pickup.Deactivate();
-        OpenAiHandler.StartAiSpeach(5);
+        jokeCounter.AddJokeCount();
+        _jokeSpawner.spawnTimer.Stop();
+        var jokePickups = _jokeSpawner.jokePickupPool.jokePickupPool.GetActiveObjects();
+
+        foreach (var jokePickup in jokePickups)
+            jokePickup.Deactivate();
+        
+        OpenAiHandler.StartAiSpeach(5, () => _jokeSpawner.spawnTimer.Continue());
     }
     
     public void StartEnemyDeathLaughEvent()
