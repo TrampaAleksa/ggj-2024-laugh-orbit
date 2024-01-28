@@ -23,7 +23,7 @@ public class EventManager : MonoBehaviour
         // Do something when the enemy hits the player
         Debug.Log("Enemy: " + enemy.name + " hit the player: " + player.name);
         player.health.RemoveHealth(1);
-        enemy.Deactivate();
+        enemy.DeactivateWithExplosion();
     }
     
     public void BulletHitEnemyEvent(Bullet bullet, Enemy enemy)

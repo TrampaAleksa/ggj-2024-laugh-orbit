@@ -17,7 +17,7 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         health = GetComponent<Health>();
-        health.OnZeroHealth.AddListener(Deactivate);
+        health.OnZeroHealth.AddListener(DeactivateWithExplosion);
 
         _colorLerp = GetComponentInChildren<ColorLerp>();
     }
@@ -34,12 +34,16 @@ public class Enemy : MonoBehaviour
 
     public void Deactivate()
     {
-        var explosion = ExplosionPool.Instance.GetFromPool();
-        explosion.transform.position = transform.position;
         EnemyPool.Instance.ReturnToPool(this);
         _colorLerp.ResetColor();
         health.ResetHealth();
      
+    }
+    public void DeactivateWithExplosion()
+    {
+        var explosion = ExplosionPool.Instance.GetFromPool();
+        explosion.transform.position = transform.position;
+        Deactivate();
     }
 
     private void OnDisable()
@@ -66,7 +70,7 @@ public class Enemy : MonoBehaviour
 
     public void FinishDeathLaughing()
     {
-        Deactivate();
+        DeactivateWithExplosion();
     }
 
 }

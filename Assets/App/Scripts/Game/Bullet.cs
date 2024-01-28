@@ -6,9 +6,12 @@ public class Bullet : MonoBehaviour
     public float speed = 10f;
     public float maxLifetime = 5f;
     private float lifetime;
+    private AudioSource BulletSource;
 
     private void OnEnable()
     {
+        BulletSource = GetComponent<AudioSource>();
+        BulletSource.Play();
         lifetime = maxLifetime;
     }
 
