@@ -9,6 +9,7 @@ public class VictorySequenceManager : MonoBehaviour
     public PlayerCharacter playerCharacter;
     public CinematicEffectTween cinematicTween;
     public UIManager uiManager;
+    public ExplosionSequence explosionSequence;
 
     public Transform boss;
     public Transform bossTargetPosition;
@@ -18,7 +19,8 @@ public class VictorySequenceManager : MonoBehaviour
     public float delayBeforeBossEntry = 2f;
     public float bossMoveDuration = 5.0f;
     public float delayAfterBossStops = 2f;
-
+    public float delayAfterFinalJoke = 1f;
+    
 
     public void WinGame()
     {
@@ -78,12 +80,17 @@ public class VictorySequenceManager : MonoBehaviour
 
     private void OnFinalJokeFinished()
     {
-        BeginNarratingOutro();
+        Invoke(nameof(BeginExplosionSequence), delayAfterFinalJoke);
+    }
+
+    private void BeginExplosionSequence()
+    {
+        explosionSequence.BeginSequence(BeginNarratingOutro);
     }
     
     private void BeginNarratingOutro()
     {
-        TTSHandler.Speak("Whoops, your ship also exploaded, my bad", OnOutroFinished);
+        TTSHandler.Speak("Whoops, your ship also exploded, my bad", OnOutroFinished);
     }
     
     private void OnOutroFinished()

@@ -1095,6 +1095,7 @@ MonoBehaviour:
   playerCharacter: {fileID: 1579576330}
   cinematicTween: {fileID: 128310144}
   uiManager: {fileID: 1577294845}
+  explosionSequence: {fileID: 1117159189}
   boss: {fileID: 1426816923}
   bossTargetPosition: {fileID: 4626489531899282081}
   delayBeforeBeginningSequence: 3
@@ -1102,6 +1103,7 @@ MonoBehaviour:
   delayBeforeBossEntry: 1
   bossMoveDuration: 3.5
   delayAfterBossStops: 2
+  delayAfterFinalJoke: 1
 --- !u!4 &865496922
 Transform:
   m_ObjectHideFlags: 0
@@ -1292,7 +1294,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerCharacter: {fileID: 1579576330}
-  endSequenceDelay: 2
+  endSequenceDelay: 3
 --- !u!1 &1120316487
 GameObject:
   m_ObjectHideFlags: 0
