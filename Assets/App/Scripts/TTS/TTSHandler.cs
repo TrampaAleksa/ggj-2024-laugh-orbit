@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,9 +6,9 @@ using UnityEngine;
 public class TTSHandler : MonoBehaviour
 {
     public SpeechManager SpeechManag;
-    public void Speak(string text)
+    public void Speak(string text,Action onComplete)
     {
-        SpeechManag.SpeakWithRESTAPI(text);
+        SpeechManag.SpeakWithRESTAPI(text, onComplete);
     }
 
 
