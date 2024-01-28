@@ -1,6 +1,7 @@
 using DG.Tweening;
 using UnityEngine;
 using UnityEngine.Serialization;
+using DG.Tweening;
 
 public class VictorySequenceManager : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class VictorySequenceManager : MonoBehaviour
     public CinematicEffectTween cinematicTween;
     public UIManager uiManager;
     public ExplosionSequence explosionSequence;
+    public AudioSource AudioSource;
 
     public Transform boss;
     public Transform bossTargetPosition;
@@ -54,12 +56,14 @@ public class VictorySequenceManager : MonoBehaviour
 
     public void BeginFinalMusic()
     {
+        AudioSource.Play();
         
     }
     
     public void BeginCinematicView()
     {
         cinematicTween.StartMoveAndResize();
+        BeginFinalMusic();
     }
 
     private void BeginBossEntry()
@@ -70,6 +74,8 @@ public class VictorySequenceManager : MonoBehaviour
     
     private void BeginNarratingIntro()
     {
+
+        AudioSource.DOPause();
         JokeNarrator.Instance.StartNarrating();
         TTSHandler.Speak("Oh no, its the big boss. Here, let me help you out with my ultimate joke.", BeginFinalJoke);
     }
